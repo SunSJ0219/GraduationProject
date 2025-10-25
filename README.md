@@ -34,12 +34,12 @@
 **编码器**  
 
 通过图同构网络生成：
-   - 节点级嵌入$f^N$（Node Embeddings）
-   - 全图嵌入$f^G$（Graph Embedding）
+   - 节点级嵌入 $f^N$ （Node Embeddings）
+   - 全图嵌入 $f^G$ （Graph Embedding）
 
 **Agent分析模块(Agent Anaylsis Module, AAM)**
-1. 将全图嵌入$f^G$作为Query，节点嵌入$f^N$作为Key/Value
-2. 输出各Agent独特的嵌入表示$f^A$
+1. 将全图嵌入 $f^G$ 作为Query，节点嵌入 $f^N$ 作为Key/Value
+2. 输出各Agent独特的嵌入表示 $f^A$
 
 **解码器**  
 1. 计算Agent嵌入与节点嵌入的相关性
@@ -49,7 +49,7 @@
 
 ### 图划分网络训练
 **强化学习架构**  
-将划分网络任务形式化为单步马尔可夫决策过程（MDP），奖励函数$R = -\max(\mathcal{L}_{\text{GAPN}})$，即第二阶段各子图损失最大值的相反数。
+将划分网络任务形式化为单步马尔可夫决策过程（MDP），奖励函数 $R = -\max(\mathcal{L}_{\text{GAPN}})$，即第二阶段各子图损失最大值的相反数。
 
 
 **负载均衡**
@@ -59,7 +59,7 @@
 
 
 **S-Batch REINFORCE算法**
-在S-Batch REINFORCE中，优势函数$A_t = R(t) - \frac{1}{s}\sum_{i=1}^s R(t_i)$ ，其中 $s$ 为批次大小，即当前回报减去s批次的期望回报。 使用S-Batch REINFORCE可在不显著增加模型复杂度的前提下降低梯度估计方差。
+在S-Batch REINFORCE中，优势函数 $A_t = R(t) - \frac{1}{s}\sum_{i=1}^s R(t_i)$ ，其中 $s$ 为批次大小，即当前回报减去s批次的期望回报。 使用S-Batch REINFORCE可在不显著增加模型复杂度的前提下降低梯度估计方差。
 
 
 **Parallel Inference Strategy**
