@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-1.10%2B-orange)
 
-## 📌 项目背景和意义
+## 项目背景和意义
 
 物联网（Internet of Things, IoT）作为信息技术与通信技术领域中的一项重要技术，近年来取得了显著的发展。物联网是指通过互联网连接、感知和通信技术，使各种设备和系统能够相互交互、收集数据，并实现智能化、自动化的网络。这些设备可以是各种各样的物理对象，如传感器、执行器、嵌入式设备等。随着科技的进步，物联网在各行各业得到广泛应用，为人们的生活和工业生产提供了更加便捷和智能的解决方案。
 
@@ -15,9 +15,9 @@
 
 综上所述，本项目旨在深入研究物联网环境下的机器人路径规划问题，特别是在考虑了动态需求和多机器人情境下，提供一种高效且实用的移动机器人路径规划方案。
 
-> **毕设关键词**：强化学习、多头注意力机制、图神经网络、旅行商问题
+> **关键词**：强化学习、多头注意力机制、图神经网络、旅行商问题
 
-## 🚀 模型结构
+## 模型结构
 本项目基于论文《A learning approach for multi-agent travelling problem with dynamic service requirement in mobile IoT》提出的GAPN网络架构进行扩展。原论文针对单Agent场景下的动态服务需求路径规划问题提出了解决方案，本项目在此基础上采用了**两阶段推理框架**来解决多Agent场景：
 1. **图划分阶段**  
    - 使用自定义网络将服务区域划分为多个子图
@@ -27,19 +27,24 @@
    - 支持并行计算以提高效率
 
 ### 图划分阶段详解
-本阶段参考多头注意力机制：在类编码器阶段生成每个Agent专属的注意力头，使得每个Agent关注不同的部分；在类解码器阶段生成节点分配概率。
+本阶段参考多头注意力机制：在编码器阶段生成每个Agent专属的注意力头，使得每个Agent关注不同的部分；在解码器阶段生成节点分配概率。如下图所示：
+<img width="1112" height="721" alt="model" src="https://github.com/user-attachments/assets/18c52bde-666c-440c-8a16-55e0d9fdcb36" />
 
-**类编码器阶段**  
-1. 通过图同构网络生成：
-   - 节点级嵌入（Node Embeddings）
-   - 全图嵌入（Graph Embedding）
-2. 将全图嵌入作为Query，节点嵌入作为Key/Value
-3. 输出各Agent独特的嵌入表示
+**编码器**  
 
-**类解码器阶段**  
+通过图同构网络生成：
+   - 节点级嵌入$f^N$（Node Embeddings）
+   - 全图嵌入$f^G$（Graph Embedding）
+
+**Agent分析模块(Agent Anaylsis Module, AAM)**
+1. 将全图嵌入$f^G$作为Query，节点嵌入$f^N$作为Key/Value
+2. 输出各Agent独特的嵌入表示$f^A$
+
+**解码器**  
 1. 计算Agent嵌入与节点嵌入的相关性
 2. 采用放大双曲正切（Scaled tanh）激活
 3. 通过Softmax输出节点分配概率
+4. 最终输出 $m$ 个子图 $\{G_i\}^m_{i=1}$
 
 ### 图划分网络训练
 **强化学习架构**  
@@ -60,6 +65,3 @@
 针对以往工作由于子图节点数量不同导致第二阶段推理效率低下，本文创新性地提出了一种并行推理策略Parallel Inference Strategy，通过尾部补全depot节点实现子图对齐，利用掩码机制保证GAPN推理不受补全节点影响。
 
 
-
-
-> Written with [StackEdit](https://stackedit.io/).
