@@ -28,7 +28,7 @@
 
 ### 图划分阶段详解
 本阶段参考多头注意力机制：在编码器阶段生成每个Agent专属的注意力头，使得每个Agent关注不同的部分；在解码器阶段生成节点分配概率。如下图所示：
-<img width="1112" height="721" alt="model" src="https://github.com/user-attachments/assets/18c52bde-666c-440c-8a16-55e0d9fdcb36" />
+<img width="556" height="360" alt="model" src="https://github.com/user-attachments/assets/18c52bde-666c-440c-8a16-55e0d9fdcb36" />
 
 **编码器**  
 
