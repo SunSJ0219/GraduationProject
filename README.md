@@ -53,23 +53,21 @@
 4. 最终输出 $m$ 个子图 $\{G_i\}^m_{i=1}$
 
 ### 图划分网络训练
-**强化学习架构**  
+**强化学习架构**<br>
 将划分网络任务形式化为单步马尔可夫决策过程（MDP），奖励函数 $R = -\max(\mathcal{L}_{\text{GAPN}})$，即第二阶段各子图损失最大值的相反数。
 
 
-**负载均衡**
+**负载均衡**<br>
 使用上述奖励的Policy Gradient算法可自动实现负载均衡，无需显式约束子图节点数。好处有：
  -  允许子图间合理数量差异（提升模型泛化性）
  -   奖励设计天然避免策略退化
 
 
-**S-Batch REINFORCE算法**
-
+**S-Batch REINFORCE算法**<br>
 在S-Batch REINFORCE中，优势函数 $A_t = R(t) - \frac{1}{s}\sum_{i=1}^s R(t_i)$ ，其中 $s$ 为批次大小，即当前回报减去s批次的期望回报。 使用S-Batch REINFORCE可在不显著增加模型复杂度的前提下降低梯度估计方差。
 
 
-**Dynamic Masking**
-
+**Dynamic Masking**<br>
 针对以往工作由于第二阶段串行推理导致计算效率低下，本文创新性地提出了一种并行推理策略Dynamic Masking，通过尾部补全节点实现子图对齐，利用掩码机制保证GAPN推理不受补全节点影响。
 <img width="2559" height="1437" alt="image" src="https://github.com/user-attachments/assets/b17beb7a-fc98-4346-81b0-5cdb42501025" />
 
