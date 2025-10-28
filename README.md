@@ -64,10 +64,12 @@
 
 
 **S-Batch REINFORCE算法**
+
 在S-Batch REINFORCE中，优势函数 $A_t = R(t) - \frac{1}{s}\sum_{i=1}^s R(t_i)$ ，其中 $s$ 为批次大小，即当前回报减去s批次的期望回报。 使用S-Batch REINFORCE可在不显著增加模型复杂度的前提下降低梯度估计方差。
 
 
 **Dynamic Masking**
+
 针对以往工作由于第二阶段串行推理导致计算效率低下，本文创新性地提出了一种并行推理策略Dynamic Masking，通过尾部补全节点实现子图对齐，利用掩码机制保证GAPN推理不受补全节点影响。
 <img width="2559" height="1437" alt="image" src="https://github.com/user-attachments/assets/b17beb7a-fc98-4346-81b0-5cdb42501025" />
 
