@@ -36,16 +36,16 @@
 <img width="556" height="360" alt="model" src="https://github.com/user-attachments/assets/18c52bde-666c-440c-8a16-55e0d9fdcb36" />
 </div>
 
-**编码器**<br>
+#### **编码器**
 通过图同构网络生成：
    - 节点级嵌入 $f^N$ （Node Embeddings）
    - 全图嵌入 $f^G$ （Graph Embedding）
 
-**Agent分析模块(Agent Anaylsis Module, AAM)**<br>
+#### **Agent分析模块(Agent Anaylsis Module, AAM)**
 1. 将全图嵌入 $f^G$ 作为Query，节点嵌入 $f^N$ 作为Key/Value
 2. 输出各Agent独特的嵌入表示 $f^A$
 
-**解码器**<br>
+#### **解码器**
 1. 计算Agent嵌入与节点嵌入的相关性
 2. 采用放大双曲正切（Scaled tanh）激活
 3. 通过Softmax输出节点分配概率
