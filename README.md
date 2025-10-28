@@ -22,10 +22,10 @@
 
 ## 模型结构
 本项目基于论文《A learning approach for multi-agent travelling problem with dynamic service requirement in mobile IoT》提出的GAPN网络架构进行扩展。原论文针对单Agent场景下的动态服务需求路径规划问题提出了解决方案，本项目在此基础上采用了**两阶段推理框架**来解决多Agent场景：
-1. **图划分阶段**  
+1. **图划分阶段** <br>
    - 使用自定义网络将服务区域划分为多个子图
    - 每个子图对应一个Agent的专属服务区域
-2. **路径规划阶段**  
+2. **路径规划阶段** <br>
    - 各子图通过独立的GAPN网络进行路径优化
    - 支持并行计算以提高效率
 
@@ -36,17 +36,16 @@
 <img width="556" height="360" alt="model" src="https://github.com/user-attachments/assets/18c52bde-666c-440c-8a16-55e0d9fdcb36" />
 </div>
 
-**编码器**  
-
+**编码器**<br>
 通过图同构网络生成：
    - 节点级嵌入 $f^N$ （Node Embeddings）
    - 全图嵌入 $f^G$ （Graph Embedding）
 
-**Agent分析模块(Agent Anaylsis Module, AAM)**
+**Agent分析模块(Agent Anaylsis Module, AAM)** <br>
 1. 将全图嵌入 $f^G$ 作为Query，节点嵌入 $f^N$ 作为Key/Value
 2. 输出各Agent独特的嵌入表示 $f^A$
 
-**解码器**  
+**解码器** <br>
 1. 计算Agent嵌入与节点嵌入的相关性
 2. 采用放大双曲正切（Scaled tanh）激活
 3. 通过Softmax输出节点分配概率
