@@ -41,11 +41,11 @@
    - 节点级嵌入 $f^N$ （Node Embeddings）
    - 全图嵌入 $f^G$ （Graph Embedding）
 
-**Agent分析模块(Agent Anaylsis Module, AAM)** <br>
+**Agent分析模块(Agent Anaylsis Module, AAM)**<br>
 1. 将全图嵌入 $f^G$ 作为Query，节点嵌入 $f^N$ 作为Key/Value
 2. 输出各Agent独特的嵌入表示 $f^A$
 
-**解码器** <br>
+**解码器**<br>
 1. 计算Agent嵌入与节点嵌入的相关性
 2. 采用放大双曲正切（Scaled tanh）激活
 3. 通过Softmax输出节点分配概率
