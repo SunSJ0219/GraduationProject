@@ -63,7 +63,7 @@
 
 
 **S-Batch REINFORCE算法**<br>
-在S-Batch REINFORCE中，优势函数 $A_t = R(t) - \frac{1}{s}\sum_{i=1}^s R(t_i)$ ，其中 $s$ 为批次大小，即当前回报减去s批次的期望回报。 使用S-Batch REINFORCE可在不显著增加模型复杂度的前提下降低梯度估计方差。
+在S-Batch REINFORCE中，优势函数 $A_t = R(t) - \frac{1}{s}\sum_{i=1}^s R(t_i)$ ，其中 $s$ 为批次大小，即当前回报减去 $s$ 批次的期望回报。 使用S-Batch REINFORCE可在不显著增加模型复杂度的前提下降低梯度估计方差。
 
 
 **Dynamic Masking**<br>
